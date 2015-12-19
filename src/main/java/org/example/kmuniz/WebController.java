@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,10 +39,18 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/transaction/{transaction_id}", method = RequestMethod.PUT)
 	public @ResponseBody Transaction setTransaction(@PathVariable long transaction_id, 
-			@PathVariable double amount,
-			@PathVariable String type){
+			@RequestBody double amount,
+			@RequestBody String type,
+			@RequestBody long parent_id){
+		Transaction transaction = repository.findTransactionById(transaction_id);
+		if( transaction == null){
+			log.error("Transaction Not found");
+			return new Transaction();
+		}
+		transaction.setAmount(amount);
+		transaction.setType(type);
+		transaction.setParent(parent_id);
 		
-		Transaction transaction = new Transaction(amount, type, transaction_id);
 		return repository.save(transaction);
 	}
 	
@@ -82,13 +91,13 @@ public class WebController {
 	 * @return
 	 */
 	@RequestMapping(value = "/sum/{transaction_id} ", method = RequestMethod.GET)
-	public @ResponseBody double sum(@PathVariable long transaction_id){
+	public @ResponseBody Double sum(@PathVariable long transaction_id){
 		double sum = 0;
 		
-//		for( Transaction trans : repository.findTransactionByParent_Id(transaction_id)){
-//			sum += trans.getAmount();
-//		}
-		return sum;
+		for( Transaction trans : repository.findTransactionByParent(transaction_id)){
+			sum += trans.getAmount();
+		}
+		return new Double(sum);
 	}
 
 	public TransactionRepository getRepository() {

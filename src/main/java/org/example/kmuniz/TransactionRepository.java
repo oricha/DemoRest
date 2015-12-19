@@ -12,5 +12,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 	
 	Collection<Transaction> findTransactionByType(String type);
 	
-	//Collection<Transaction> findTransactionByParent_Id(long parent_id);
+	Collection<Transaction> findTransactionByParent(long parent);
 }

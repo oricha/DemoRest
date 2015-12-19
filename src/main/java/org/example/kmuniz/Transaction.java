@@ -16,8 +16,10 @@ public class Transaction {
 	
 	private String type; //is a string specifying a type of the transaction.
 	
-	private long parent_id ; // is an optional long that may specify the parent transaction of this transaction. 
-	
+	private long parent ; // is an optional long that may specify the parent transaction of this transaction. 
+	/* I had renamed an entity property. Spring automatically creates a query for each attribute. First it create
+	 * a query for Id and then with parent_Id its not recognize the second query.
+	 * */
 	
 	public Transaction(){}
 	
@@ -46,12 +48,13 @@ public class Transaction {
 		this.type = type;
 	}
 
-	public long getParent_id() {
-		return parent_id;
+	public long getParent() {
+		return parent;
 	}
 
-	public void setParent_id(long parent_id) {
-		this.parent_id = parent_id;
+	public void setParent(long parent) {
+		this.parent = parent;
 	}
+
 
 }
