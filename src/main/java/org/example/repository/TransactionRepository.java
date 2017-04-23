@@ -1,7 +1,8 @@
-package org.example.kmuniz;
+package org.example.repository;
 
 import java.util.Collection;
 
+import org.example.entities.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

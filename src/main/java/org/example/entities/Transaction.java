@@ -1,4 +1,4 @@
-package org.example.kmuniz;
+package org.example.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,9 +1,11 @@
-package org.example.kmuniz;
+package org.example.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.example.entities.Transaction;
+import org.example.repository.TransactionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
