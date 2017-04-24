@@ -2,14 +2,10 @@ package org.example.controller;
 
 import java.util.Collection;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.example.entities.Car;
-import org.example.entities.Marca;
+import org.example.entities.Brand;
 import org.example.repository.CarRepository;
-import org.example.repository.MarcaRepository;
+import org.example.repository.BrandRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Controller
 @AllArgsConstructor
@@ -30,7 +29,7 @@ public class CarController {
 	@Autowired
 	private CarRepository carRepository;
 	@Autowired
-	private MarcaRepository marcaRepository; 
+	private BrandRepository marcaRepository; 
 
 
 	/**
@@ -61,8 +60,8 @@ public class CarController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/{car_id}", method = RequestMethod.GET)
-	public @ResponseBody Collection<Marca> listMarcas(){
+	@RequestMapping(value = "/brands", method = RequestMethod.GET)
+	public @ResponseBody Collection<Brand> listMarcas(){
 		
 		return marcaRepository.findAll();
 	}

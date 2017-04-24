@@ -9,12 +9,12 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Marca {
+public class Brand {
 	@Id 
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Integer id_marca;
 	private String name;
 
-	public Marca(){}
+	public Brand(){}
 	
 }
